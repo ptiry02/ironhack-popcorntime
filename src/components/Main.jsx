@@ -6,13 +6,16 @@ import Movie from './Movie'
 const Main = () => {
   const [movies, setMovies] = useState(moviesArray)
 
-  const deleteHandler = (movieId) => {
+  const deleteHandler = (movieId, ev) => {
+    const conf = window.confirm('Are you sure??')
+    if (!conf) return ev.preventDefault()
     setMovies(movies.filter((movie) => movieId !== movie.id))
   }
   return (
     <Wrapper>
-      {movies.map((mov, i) => (
-        <Movie key={i} mov={mov} remove={deleteHandler} />
+      {movies.length > 0 ? <h2>There are {movies.length} movies in our DB</h2> : <h2>There are no movies... 😢</h2>}
+      {movies.map((mov) => (
+        <Movie key={mov.id} mov={mov} remove={deleteHandler} />
       ))}
     </Wrapper>
   )

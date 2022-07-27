@@ -10,11 +10,11 @@ const Movie = ({ mov, remove }) => {
         <p>year: {mov.year}</p>
         <p>Genres:</p>
         <ul>
-          {mov.genres.map((genre) => (
-            <li>{genre}</li>
+          {mov.genres.map((genre, i) => (
+            <li key={i}>{genre}</li>
           ))}
         </ul>
-        <button onClick={() => remove(mov.id)}>Delete</button>
+        <button onClick={(ev) => remove(mov.id, ev)}>Delete</button>
       </div>
     </Wrapper>
   )
